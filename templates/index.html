@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Movie Recommender System</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Auto Complete -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+  
+  <script type="text/javascript">
+    var films = {{suggestions|tojson}};
+  </script>
+</head>
+
+<body id="content" style="font-family: 'Noto Sans JP', sans-serif;">
+
+  <div class="container mt-5 text-center">
+    <h1>Movie Recommender System</h1>
+    <div class="form-group shadow-textarea mt-4">
+      <input type="text" name="movie" class="form-control movie" id="autoComplete" autocomplete="off" placeholder="Enter the Movie Name/Title" required />
+    </div>
+    <button class="btn btn-danger movie-button" id="searchBtn" disabled>Search</button>
+  </div>
+
+  <div id="loader" class="text-center" style="display: none;">
+    <img src="../static/loader.gif" alt="Loading..." style="width: 50px;"/>
+  </div>
+
+  <div class="fail text-center" style="display: none;">
+    <h3>Sorry! This Movie is not in our database.</h3>
+  </div>
+
+  <div class="results text-center">
+    <h2 id="name" class="text-uppercase"></h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+  <script src="{{url_for('static', filename='autocomplete.js')}}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{url_for('static', filename='recommend.js')}}"></script>
+</body>
+</html>
